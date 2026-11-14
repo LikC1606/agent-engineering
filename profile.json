@@ -1,0 +1,6 @@
+{
+  "id": "agent-engineering",
+  "skill": "research-engineering",
+  "title": "论文实验与研究代码经验",
+  "rules": "skills/research-engineering/references/rules.md"
+}

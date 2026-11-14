@@ -1,0 +1,10 @@
+__pycache__/
+*.py[cod]
+.venv/
+.agent-experience/
+runs/
+artifacts/
+*.log
+.env
+.env.*
+!.env.example
