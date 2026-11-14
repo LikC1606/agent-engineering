@@ -1,6 +1,6 @@
 # Agent Engineering
 
-用于论文相关项目的个人 agent 经验：先理解研究需求，解释具体实现，先做小规模验证，保留运行过程，排查并补齐失败任务，最后交付可复现流程。支持 Codex、Claude Code 和 Cursor。
+用于论文相关项目的个人 agent 经验：先理解研究需求，解释具体实现，先做小规模验证，保留运行过程，排查并补齐失败任务，最后交付可复现流程。支持 Codex、Claude Code、Cursor、Google Gemini CLI 和 Google Antigravity。
 
 与 [Agent Paper Writing](https://github.com/LikC1606/agent-paper-writing) 配合使用时，本仓库负责实验代码、运行与分析，写作仓库负责论文故事、实验论证、图表与修订。两者可在同一个研究项目中安装，也可独立使用。
 
@@ -16,11 +16,13 @@ python3 agent-engineering/tools/profile.py install --project /path/to/research-p
 python3 agent-engineering/tools/profile.py check --project /path/to/research-project
 ```
 
-将 `/path/to/research-project` 替换为实际研究项目目录。默认安装全部三平台，`--agents codex claude cursor` 可以选择本次操作的平台。安装范围是指定项目；下载配置仓库后，需要执行安装使其在研究项目中生效。配置本身不修改账户认证、模型或机器的全局设置。
+将 `/path/to/research-project` 替换为实际研究项目目录。`--agents` 接受 `codex claude cursor gemini antigravity`，省略时操作全部五平台；例如 `--agents gemini antigravity` 只选择两个 Google 平台。安装范围是指定项目；下载配置仓库后，需要执行安装使其在研究项目中生效。配置不修改全局 `context.fileName`、权限、账户认证或模型设置。
 
-安装器将核心规则直接写入项目的 `AGENTS.md`、`CLAUDE.md` 命名区域及 `.cursor/rules/agent-engineering.mdc`，并复制自包含技能与工作流。已有规则区外的内容予以保留。备份、内容清单和安装历史位于项目的 `.agent-experience/installations/agent-engineering/`。执行前检查项目是否已有相互冲突的规则，或 `AGENTS.override.md` 等更具体的入口；文件安装检查不替代当前客户端的加载验证。
+安装器将核心规则直接写入共享的 `AGENTS.md`（Codex/Antigravity）、`CLAUDE.md` 命名区域及 `.cursor/rules/agent-engineering.mdc`；Gemini 的 `GEMINI.md` 使用原生相对导入引用同一规则正文。Codex、Gemini 与 Antigravity 共用 `.agents/skills`。已有规则区外的内容予以保留，备份、内容清单和安装历史位于 `.agent-experience/installations/agent-engineering/`。执行前检查项目已有规则及更具体入口；文件检查不替代客户端加载验证。
 
 `check` 核对文件、内容和安装状态；要确认 agent 实际加载，在该研究项目中新开会话，让它说明本次任务会使用哪些规则与运行记录位置，再用小任务观察行为。Cursor 的规则入口为项目 `.mdc` 文件，技能副本仅供读取详细流程。安装副本用相对路径互相引用，便于项目整体迁移。
+
+五平台入口、旧三平台升级、Google 客户端核对，以及两个仓库同项目使用的完整步骤见 [平台兼容说明](docs/platforms.md)。
 
 ## 经验如何组织
 
@@ -57,7 +59,7 @@ python3 agent-engineering/tools/profile.py uninstall --project /path/to/research
 python3 agent-engineering/tools/profile.py uninstall --project /path/to/research-project
 ```
 
-重复安装相同内容保持不变；更新与卸载前检查手动修改，发现冲突时保留现场并报告。两个 profile 的内容与历史各自管理。每次修改要求，在提交中写明条目编号、原行为、新行为和原因。
+重复安装相同内容保持不变；更新与卸载前检查手动修改，发现冲突时保留现场并报告。旧三平台用户在 `git pull` 后执行默认 `install`、`check` 即加入五平台；只保留原三平台则在命令中显式加 `--agents codex claude cursor`。共享入口或技能等到最后一个使用它的平台卸载后才移除，其他 profile 的区域和历史各自保留。每次修改要求，在提交中写明条目编号、原行为、新行为和原因。
 
 Git 仓库迁移长期规则、模板、工具及已整理经验。跨机器续跑时，还需要同步研究项目代码、运行目录、输入与外部存储索引，并重新配置账户认证。运行目录的备份位置和恢复方式写入项目复现说明；忽略入库不等于已备份。
 
