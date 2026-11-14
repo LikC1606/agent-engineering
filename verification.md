@@ -56,8 +56,10 @@ Skill 使用 `quick_validate.py` 校验通过。运行工具使用 Linux/macOS/W
 
 ## 可执行客户端验收与测试留存（2026-11-15）
 
-当前完整套件为 56 项，本机 Linux、Python 3.12.3 全部通过。新增 10 项场景材料测试实际验证 C01–C14 的输入、故障、设置变化、进度采样和迁移流程；新增 8 项运行器测试验证精确命令、双日志、超时、原生预算错误、历史保护、证据文件和完整评审。自动测试不发起模型请求。
+当前完整套件为 57 项，本机 Linux、Python 3.12.3 全部通过。新增 10 项场景材料测试实际验证 C01–C14 的输入、故障、设置变化、进度采样和迁移流程；新增 9 项运行器测试验证精确命令、双日志、超时、原生预算错误、历史保护、证据文件和完整评审。自动测试不发起模型请求。
 
 真实客户端使用 `tests/agent_harness.py` 的 `prepare/run/review`，保存源码、安装、提示、完整前后现场与人工逐项判断。调用成功不自动通过；条目满足但执行中断时保留 `criteria_status=passed`、`execution_status` 的实际错误及整体 `unverified`，受保护历史变化时整体失败。原失败和提示后续跑分开保留，后者不能算独立首次通过。
 
-工程 CI 的两个 Python 任务保存测试输出及 profile、运行记录、验收器现场，成功或失败均上传 artifact，含隐藏目录，保留 14 天。本地已检查两套当前真实 profile 共同安装到同一带空格路径并在五平台通过 `check`；合并 `AGENTS.md` 为 8,300 bytes，低于 Antigravity 的 24,000 bytes 上限。Skill 校验通过，原始 14 条要求未修改。
+工程 CI 的两个 Python 任务保存测试输出及 profile、运行记录、验收器现场，成功或失败均上传 artifact，含隐藏目录，保留 14 天。本地已检查两套真实 profile 共同安装到同一带空格路径并在五平台通过 `check`，完整入口低于 Antigravity 的 24,000 bytes 上限。Skill 校验通过，原始 14 条要求未修改。
+
+[Actions 43632513513](https://github.com/LikC1606/agent-engineering/actions/runs/43632513513) 在两个 Python 版本实际运行当时的 56 项套件，均通过且零跳过；两份 artifact 已下载核验。随后根据实际 Antigravity `event=result/result.status=ERROR` 新增一项原生错误回归，当前为 57 项；超时事实与原生错误诊断同时保留。当前运行器使用该 CLI 帮助列出的会话级 `accept-edits`，不再默认选择本次账户不可用的 `auto`，也不修改全局权限。真实模型结果见 [逐条记录](docs/behavior-results.md)。
