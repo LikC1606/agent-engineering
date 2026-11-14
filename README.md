@@ -32,7 +32,7 @@ python3 agent-engineering/tools/profile.py check --project /path/to/research-pro
 - [运行记录工具](skills/research-engineering/references/run-tool.md) 说明实际命令、快照、任务状态、产物与错误教训的保存方式。
 - [lessons](lessons/) 保存有适用条件和事实依据的长期经验。
 
-[逐条测试说明](docs/testing.md) 将 C01–C14 对应到自动行为测试和真实 agent 验收场景，并给出保留测试现场的命令。
+[逐条测试说明](docs/testing.md) 包含 56 项自动检查，以及可实际准备、执行并逐项登记 C01–C14 客户端验收的命令；原始失败与辅助续跑分开保存。
 
 执行前由 agent 主动核对最新要求、配置、环境和路径；会改变目标、实验有效性、成本或授权的实质歧义需要讨论。常规可逆步骤在当前授权内持续完成。
 

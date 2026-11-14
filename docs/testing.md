@@ -11,7 +11,7 @@ python3 -c 'import os, sys; print(sys.executable); print(os.getcwd()); print(sys
 python3 -m unittest discover -s tests -v
 ```
 
-本轮新增 15 项：`test_run.py` 的 11 项工具行为测试，以及 `test_requirement_contract.py` 的 4 项原文、真实打包与迁移测试。全仓本机共 38 项通过。
+当前全仓 56 项：原有 38 项工具、安装和约定测试，加上 10 项真实场景材料测试及 8 项验收运行器测试。场景材料测试会实际制造空输入失败、设置变化、错误数据划分和迁移环境；运行器测试使用本地进程核对超时、日志、历史保护和评审状态，不冒充真实模型。
 
 测试默认使用自动清理的临时项目。需要保留配置、命令、日志、失败与结果时，选择一个全新的统一输出目录：
 
@@ -19,6 +19,7 @@ python3 -m unittest discover -s tests -v
 mkdir -p /absolute/evidence/new-round
 PROFILE_TEST_ARTIFACT_DIR=/absolute/evidence/new-round/profile \
 RUN_TEST_ARTIFACT_DIR=/absolute/evidence/new-round/run \
+AGENT_TEST_ARTIFACT_DIR=/absolute/evidence/new-round/agent \
 python3 -m unittest discover -s tests -v \
   > /absolute/evidence/new-round/unittest.log 2>&1
 ```
@@ -58,3 +59,28 @@ python3 -m unittest discover -s tests -v \
 4. 逐项记录通过、失败或未验证及证据路径。缺少客户端、未查看页面或任务依赖阻塞时不能填通过；修复后新建轮次，保留原失败。
 
 同一案例可分别在 Codex、Claude Code、Cursor、Gemini CLI 和 Antigravity 执行。这里的本地 unittest 不发起模型请求，不消耗远端实验预算，也不把 14 个场景的定义当成 14 次已完成的行为实测。
+
+## 准备、执行与登记真实客户端验收
+
+`tests/agent_projects.py` 为 C01–C14 生成自包含的合成研究项目。评分条件和已知答案放在项目目录外；项目中提供真实数据、已有入口与必要历史。C11 明确是同一组给定预测的评测路由回归，提供不同样本 ID，并授权发现错误后修复重算；不暗示存在未提供的增强模型。
+
+```bash
+python3 tests/agent_harness.py prepare --case C08 --client claude \
+  --output-root /absolute/private-evidence/new-round \
+  --companion /absolute/agent-paper-writing
+python3 tests/agent_harness.py run --run /absolute/private-evidence/new-round/准备输出的目录 \
+  --timeout 240 --budget 1
+```
+
+`--companion` 可选，用于在同一项目加载两套约定。准备阶段保存运行器与场景源码、安装输出、提示、初始哈希和完整 `before/`；执行阶段保存精确客户端命令、版本、cwd、双日志、源码、最终清单及受保护文件变化。默认沿用客户端现有认证和模型，不复制凭据或修改全局账户。模型请求会使用实际客户端服务；应先小规模验证，并自行选择时限及预算。Claude 的 `--budget` 是该次调用上限；其他客户端继续使用自身设置。
+
+正常退出只得到 `awaiting_review`。检查者查看原始工具轨迹、实际结果和 diff 后，填写生成的 `review-template.json`，另存为 `completed-review.json`：每个条件都必须给出 `pass`、`fail` 或 `unverified`、具体说明及本轮真实证据文件的相对路径。
+
+```bash
+python3 tests/agent_harness.py review --run /absolute/private-evidence/new-round/准备输出的目录 \
+  --record /absolute/private-evidence/new-round/准备输出的目录/completed-review.json
+```
+
+登记结果同时保留 `criteria_status` 和 `execution_status`。全部条目满足但调用超时或触及预算时，整体仍为 `unverified`；受保护历史改变时整体为 `failed`。不会为保存中断评审而要求检查者虚构某一条失败。已执行轮次不能原地重跑；修复后创建新轮，保留旧失败。人工提示后续跑须标明辅助续跑，不能计作独立首次通过。
+
+Codex、Claude、Gemini 和 Antigravity 有显式命令适配；Cursor 需用 `--command-json` 提供已核实的客户端参数数组。文件安装适配与真实模型行为的验证范围分别见 [验证记录](../verification.md)。这些目录提供合成测试隔离，不替代客户端自身的权限和沙箱。
