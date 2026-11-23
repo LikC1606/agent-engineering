@@ -1,17 +1,16 @@
-<!-- README_SYNC: source=7fd318b85e92326ec475163eeda6ade99fb77dad; updated=2026-11-18 -->
-
-[简体中文](./README.md) · English
+<!-- README_SYNC: source=7fd318b85e92326ec475163eeda6ade99fb77dad; updated=2026-11-23 -->
+<p align="center"><a href="./README.md" lang="zh-CN">简体中文</a> · English</p>
 
 # Agent Engineering
 
-Install research rules and an experiment recorder into a paper project. Start with a small trial, then keep configurations, tasks, artifacts, and failed attempts with the project so you can inspect or resume a run later.
-
-[Star the repository](https://github.com/LikC1606/agent-engineering/stargazers) to find the workflow again.
+Install shared research-agent rules and a lightweight experiment recorder into any paper repository across five coding clients. Start with a small sanity run, then keep configurations, task manifests, artifacts, and failed attempts inside the project so every rerun stays auditable.
 
 [![Stars](https://img.shields.io/github/stars/LikC1606/agent-engineering)](https://github.com/LikC1606/agent-engineering/stargazers)
 [![Checks](https://github.com/LikC1606/agent-engineering/actions/workflows/check.yml/badge.svg)](https://github.com/LikC1606/agent-engineering/actions/workflows/check.yml)
 [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-3776AB)](./tools/profile.py)
 [![Issues](https://img.shields.io/github/issues/LikC1606/agent-engineering)](https://github.com/LikC1606/agent-engineering/issues)
+
+[Star the repository](https://github.com/LikC1606/agent-engineering/stargazers) to keep this reproducible experiment workflow handy.
 
 ## Install into a research project
 

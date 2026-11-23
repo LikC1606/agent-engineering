@@ -1,17 +1,16 @@
-<!-- README_SYNC: source=7fd318b85e92326ec475163eeda6ade99fb77dad; updated=2026-11-18 -->
-
-简体中文 · [English](./README_EN.md)
+<!-- README_SYNC: source=7fd318b85e92326ec475163eeda6ade99fb77dad; updated=2026-11-23 -->
+<p align="center">简体中文 · <a href="./README_EN.md" lang="en">English</a></p>
 
 # Agent Engineering
 
-给论文实验项目装上研究 Agent 规则和运行记录工具。先做小试，再把配置、任务、产物和每次失败留在项目里，换机器或补跑时有据可查。
-
-如果这套流程对你有用，可以 [Star 收藏](https://github.com/LikC1606/agent-engineering/stargazers)。
+给论文实验项目装上一套跨五种客户端共享的研究 Agent 规则和运行记录工具：先做小规模验证，再把配置、任务清单、产物与每次失败尝试留在项目内，换机器或补跑时全程有据可查。
 
 [![Stars](https://img.shields.io/github/stars/LikC1606/agent-engineering)](https://github.com/LikC1606/agent-engineering/stargazers)
 [![Checks](https://github.com/LikC1606/agent-engineering/actions/workflows/check.yml/badge.svg)](https://github.com/LikC1606/agent-engineering/actions/workflows/check.yml)
 [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-3776AB)](./tools/profile.py)
 [![Issues](https://img.shields.io/github/issues/LikC1606/agent-engineering)](https://github.com/LikC1606/agent-engineering/issues)
+
+如果这套可复现实验工作流对你有用，欢迎 [Star 收藏](https://github.com/LikC1606/agent-engineering/stargazers)。
 
 ## 安装到实验项目
 
