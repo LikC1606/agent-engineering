@@ -8,6 +8,7 @@ Install shared research-agent rules and a lightweight experiment recorder into a
 [![Stars](https://img.shields.io/github/stars/LikC1606/agent-engineering)](https://github.com/LikC1606/agent-engineering/stargazers)
 [![Checks](https://github.com/LikC1606/agent-engineering/actions/workflows/check.yml/badge.svg)](https://github.com/LikC1606/agent-engineering/actions/workflows/check.yml)
 [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-3776AB)](./tools/profile.py)
+[![License: MIT](https://img.shields.io/badge/license-MIT-2f855a)](./LICENSE)
 [![Issues](https://img.shields.io/github/issues/LikC1606/agent-engineering)](https://github.com/LikC1606/agent-engineering/issues)
 
 [Star the repository](https://github.com/LikC1606/agent-engineering/stargazers) to keep this reproducible experiment workflow handy.
@@ -56,4 +57,4 @@ python3 -m unittest discover -s agent-engineering/tests -v
 
 Updates and removals flag local edits without overwriting a conflicting installation. A shared entry point stays until its last consumer is removed. Reinstalling with the defaults adds both Google clients to an older three-client setup; use `--agents codex claude cursor` to keep just the original three.
 
-The [verification scope](./verification.md), [test instructions](./docs/testing.md), and [client behavior results](./docs/behavior-results.md) distinguish installed files, recorder behavior, and rules applied by clients. Please [open an issue](https://github.com/LikC1606/agent-engineering/issues) for reproducible problems.
+The [verification scope](./verification.md), [test instructions](./docs/testing.md), and [client behavior results](./docs/behavior-results.md) distinguish installed files, recorder behavior, and rules applied by clients. Released under the [MIT License](./LICENSE); please [open an issue](https://github.com/LikC1606/agent-engineering/issues) for reproducible problems.

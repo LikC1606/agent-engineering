@@ -8,6 +8,7 @@
 [![Stars](https://img.shields.io/github/stars/LikC1606/agent-engineering)](https://github.com/LikC1606/agent-engineering/stargazers)
 [![Checks](https://github.com/LikC1606/agent-engineering/actions/workflows/check.yml/badge.svg)](https://github.com/LikC1606/agent-engineering/actions/workflows/check.yml)
 [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-3776AB)](./tools/profile.py)
+[![License: MIT](https://img.shields.io/badge/license-MIT-2f855a)](./LICENSE)
 [![Issues](https://img.shields.io/github/issues/LikC1606/agent-engineering)](https://github.com/LikC1606/agent-engineering/issues)
 
 如果这套可复现实验工作流对你有用，欢迎 [Star 收藏](https://github.com/LikC1606/agent-engineering/stargazers)。
@@ -56,4 +57,4 @@ python3 -m unittest discover -s agent-engineering/tests -v
 
 发现手改冲突时保留现场；共享入口等最后一个使用平台卸载后才移除。旧三平台可按默认流程升级到五平台；要保留原三种，传入 `--agents codex claude cursor`。
 
-[验证范围](./verification.md)、[检查方法](./docs/testing.md)和[真实客户端记录](./docs/behavior-results.md)分别说明文件安装、运行记录及客户端行为已有的证据。遇到可复现的问题，欢迎[开 Issue](https://github.com/LikC1606/agent-engineering/issues)。
+[验证范围](./verification.md)、[检查方法](./docs/testing.md)和[真实客户端记录](./docs/behavior-results.md)分别说明文件安装、运行记录及客户端行为已有的证据。本项目采用 [MIT 许可证](./LICENSE)，遇到可复现的问题，欢迎[开 Issue](https://github.com/LikC1606/agent-engineering/issues)。
